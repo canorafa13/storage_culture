@@ -1,0 +1,11 @@
+version: '3.1'
+
+services:
+  api:
+    container_name: storage_culture_api
+    image: storage_culture_api
+    build: ./api
+    command: node index.js
+    env_file: .env
+    ports:
+    - "${PORT}:${PORT}"
