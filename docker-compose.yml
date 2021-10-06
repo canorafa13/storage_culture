@@ -2,10 +2,35 @@ version: '3.1'
 
 services:
   api:
-    container_name: storage_culture_api
-    image: storage_culture_api
+    container_name: sc_api
+    image: sc_api
     build: ./api
-    command: node index.js
+    command: npm run start
     env_file: .env
+    restart: always
     ports:
     - "${PORT}:${PORT}"
+
+  users:
+    container_name: sc_users
+    image: sc_users
+    build: ./users
+    command: npm run start
+    env_file: .env
+  catalogs:
+    container_name: sc_catalogs
+    image: sc_catalogs
+    build: ./catalogs
+    command: npm run start
+    env_file: .env
+  db:
+    container_name: sc_db
+    image: sc_db
+    build: ./database
+    env_file: .env
+    volumes:
+      - data:/var/lib/mysql
+
+volumes:
+  data:
+    driver: "local"

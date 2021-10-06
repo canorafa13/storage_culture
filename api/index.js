@@ -5,7 +5,6 @@
     const prefix = "/storage-culture/api/v1"
     
     const init = async () => {
-        console.log("POST", process.env.PORT)
         const server = Hapi.server({
             port: process.env.PORT,
             host: '0.0.0.0'
@@ -32,6 +31,12 @@
                 options: {
                     methods: ['POST', 'GET', 'PUT', 'DELETE']
                 }
+            }, {
+                plugin: require('./plugins/users/index'),
+                routes: {prefix}
+            }, {
+                plugin: require('./plugins/catalogs/index'),
+                routes: {prefix}
             }
         ])
 
