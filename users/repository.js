@@ -2,6 +2,7 @@
     'use strict';
     const config = require('./config');
     const knex = require('knex')(config.production);
+    const md5 = require('md5');
 
 
     exports.getAll = async() => {
@@ -24,5 +25,18 @@
             .catch((error) => {
                 throw error;
             });
+    }
+
+    exports.signon = async(username, password) => {
+        return await knex('Users')
+            .select('id', 'name', 'last_name', 'url_profile', 'status')
+            .where('username', username)
+            .where('password', md5(password))
+            .then((rows) => {
+                return rows;
+            })
+            .catch((error) => {
+                throw error;
+            })
     }
 })();

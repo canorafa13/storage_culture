@@ -33,4 +33,12 @@
             throw Boom.notImplemented(JSON.stringify(e));
         }
     }
+
+    exports.signon = async(req, h) => {
+        try{
+            return await req.server.methods.users.signon(req.payload.username, req.payload.password);
+        }catch(e){
+            throw Boom.notImplemented(JSON.stringify(e));
+        }
+    }
 })();

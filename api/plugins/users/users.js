@@ -24,4 +24,12 @@
             throw e;
         }
     }
+
+    exports.signon = async(username, password) => {
+        try{
+            return await requester.send({type: 'signon', username, password});
+        }catch(e){
+            throw e;
+        }
+    }
 })();

@@ -27,6 +27,8 @@
                 plugin: require('hapi-swagger'),
                 options: swaggerOptions
             }, {
+                plugin: require('@hapi/jwt')
+            }, {
                 plugin: require('hapi-cors'),
                 options: {
                     methods: ['POST', 'GET', 'PUT', 'DELETE']

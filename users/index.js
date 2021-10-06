@@ -11,4 +11,16 @@
 
     responder.on('getAll', async () => await repository.getAll());
     responder.on('insert', async (req) => await repository.insert(req.payload));
+    responder.on('signon', async (req) => {
+        const user = await repository.signon(req.username, req.password);
+        if(user.length > 0){
+            if(user[0].status === 'ACTIVE'){
+                return user[0];
+            }else{
+                throw 'Inactive user';
+            }
+        }else{
+            throw 'Invalid user or password';
+        }
+    });
 })();

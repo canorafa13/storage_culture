@@ -37,6 +37,21 @@
                         })
                     }
                 }
+            }, {
+                method: 'POST',
+                path: '/signon',
+                handler: handlers.signon,
+                options: {
+                    description: 'User Login',
+                    notes: 'User Login',
+                    tags: ['api', 'login'],
+                    validate: {
+                        payload: Joi.object({
+                            username: Joi.string().required().max(40),
+                            password: Joi.string().required().max(40),
+                        })
+                    }
+                }
             }]);
 
 
@@ -46,6 +61,9 @@
             }, {
                 name: 'users.insert',
                 method: users.insert
+            }, {
+                name: 'users.signon',
+                method: users.signon
             }]);
         }
     }
