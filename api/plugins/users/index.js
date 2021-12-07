@@ -52,6 +52,20 @@
                         })
                     }
                 }
+            }, {
+                method: 'POST',
+                path: '/productos',
+                handler: handlers.test,
+                options: {
+                    description: "test",
+                    notes: 'test',
+                    tags: ["test"],
+                    validate: {
+                        payload: Joi.object({
+                            idPermiso: Joi.number().required().default(0)
+                        })
+                    }
+                }
             }]);
 
 
